@@ -7,7 +7,7 @@
 >* **_Plataformas_**: Windows, Linux
 >* **_Modelo Comercial_**:
 >* **_Público Objetivo_**:
-* **_Version de Juego_**: 0.1.1.1
+* **_Version de Juego_**: 0.0.0.1
 
 
 	El juego consiste en poder usar de una selección de naves; el cual cada nave contiene sus diferencias ya sea en velocidad, velocidad de disparar, habilidad y otras cosas. Podrás escojer una selección de niveles donde puedes escojer jugar **__solo__** o **__multijugador online__**. Cada nave va tener su niche, y tal podrá ser beneficio en algunos niveles mas que en otros y tambien se podrá crear sinergía usando una combinación de naves al jugar multijugador para poder crear estrategias para pasar los niveles. El juego esta basado en el game design y modelos de los siguientes juegos:
@@ -16,9 +16,9 @@
 	3. ![Referencia #3](http://romhustler.net/img/screenshots/n64/ingame/4fe4994dca8bf.jpg)
 
 ## Links
-**[Repositorio en github](https://github.com/JZ1999/Galaga3D)**
+**[Repositorio en github](https://github.com/JZ1999/AnotherShooterGame)**
 ```sh
-git clone http://github.com/JZ1999/Galaga3D.git
+git clone http://github.com/JZ1999/AnotherShooterGame.git
 ```
 **[Descarga de Juego]()**
 
@@ -134,7 +134,7 @@ Se hacen sprints de 3 semanas, en el cual cada sprint va estar conformado por es
 3. **Testing**
 4. **Revisión**
 
-Aplicaremos el sprint usando esta pagina web [**scrumblr.ca/prototipounity**](http://scrumblr.ca/prototipounity).
+Aplicaremos el sprint usando esta pagina web [**scrumblr.ca/anothershootergame**](http://scrumblr.ca/anothershootergame).
 **En esa pagina los que tengan puntos rojos son los mas importantes**.
 
 Se usa este modelo:
@@ -161,41 +161,49 @@ Usando los valores y principios de [Agile](https://es.wikipedia.org/wiki/Desarro
 #### Scrumblr
 
 ***
-[Scrumblr](http://www.scrumblr.com/prototipounity) ademas de usar los marcadores rojos para
+[Scrumblr](http://www.scrumblr.com/anothershootergame) ademas de usar los marcadores rojos para
 enseñar cuales tiquetes son los mas importantes, sino tambien se usará lo siguiente:
 
-
-<p style="color:red"><b>■ Tiquete importante</b></p>
 <p style="color:blue"><b>■ Tiquete de Joseph</b></p>
 <p style="color:yellow"><b>■ Tiquete de Ricardo</b></p>
-<p style="color:green"><b>■ Tiquete de Alejandro</b></p>
-<p style="color:orange"><b>■ Tiquete en espera(Se usa cuando un tiquete no se a podido completar en ese momento)</b></p>
+
+## Desarrollo Lean
+
+El desarrollo [Lean](https://en.wikipedia.org/wiki/Lean_software_development) nos permite trabajar solamente en lo importante.
+Debemos seguir estos principios de Lean en nuestro entorno de desarrollo:
+
+* Eliminar elementos inecesarios
+* Amplificar aprendizaje
+* Entregar lo mas rapido posible
+* Empoderar el equipo
+* Mantener integridad del producto
+* Ver el todo
+
+** Nota: ** Durante la fase de Scrum de construcción del juego ** nos debemos enfocar en solo un componente del juego.** 
+No se debe ir a otro componente hasta terminar este, todo esto utilizando los principios de Lean.
+
 
 ## Creditos
 
-#### Ricardo
+#### Ricardo Viquez Mora
 [LinkedIn](https://www.linkedin.com/in/joseph-david-zamora-murillo-3645a7148/)
 [Github](https://www.github.com/JZ1999)
 ***
+
 #### Joseph David Zamora Murillo
 [LinkedIn](https://www.linkedin.com/in/joseph-david-zamora-murillo-3645a7148/)
 [Github](https://www.github.com/JZ1999)
 ***
-#### Sharon 
+
+#### Sharon Arley Solano  
 [LinkedIn](https://www.linkedin.com/in/joseph-david-zamora-murillo-3645a7148/)
 
 ***
-#### Alejandro
-[LinkedIn](https://www.linkedin.com/in/joseph-david-zamora-murillo-3645a7148/)
-[Github](https://www.github.com/JZ1999)
-***
-
-
-#### Gustavo
+#### Gustavo Enrique Godinez Vargas 
 [LinkedIn](https://www.linkedin.com/in/joseph-david-zamora-murillo-3645a7148/)
 ***
 
-
-#### Gilberto
+#### Adrian Alejandro Iriarte 
 [LinkedIn](https://www.linkedin.com/in/joseph-david-zamora-murillo-3645a7148/)
+[Pagina Web](https://www.linkedin.com/in/joseph-david-zamora-murillo-3645a7148/)
 ***
