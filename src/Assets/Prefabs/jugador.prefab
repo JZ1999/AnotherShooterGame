@@ -328,6 +328,7 @@ GameObject:
   - component: {fileID: 114240040819348080}
   - component: {fileID: 114028811815872644}
   - component: {fileID: 54577155590216558}
+  - component: {fileID: 114092115405354402}
   m_Layer: 0
   m_Name: jugador
   m_TagString: Player
@@ -1456,6 +1457,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   posInicial: {x: 0, y: 0, z: 0}
+--- !u!114 &114092115405354402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1950331215513150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5984422797e095345b4b5a799eda5e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tecla: 102
 --- !u!114 &114240040819348080
 MonoBehaviour:
   m_ObjectHideFlags: 1
