@@ -13,9 +13,5 @@ public class MoverNaveAlInicio : MonoBehaviour {
 	{
 		transform.position = posInicial;
 	}
-
-	void Update () {
-		
-	}
     #endregion
 }

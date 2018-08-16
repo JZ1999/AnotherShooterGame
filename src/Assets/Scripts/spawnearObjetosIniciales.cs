@@ -16,9 +16,5 @@ public class spawnearObjetosIniciales : MonoBehaviour {
 			Instantiate(objeto);
 		}
 	}
-    
-    void Update () {
-        
-    }
     #endregion
 }

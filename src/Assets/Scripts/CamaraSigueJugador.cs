@@ -9,7 +9,7 @@ enum ModosDeCamara
 public class CamaraSigueJugador : MonoBehaviour {
 
 	#region Variables
-	private Transform nave;
+	private Transform naveTR;
 	[SerializeField]
 	[Range(0f,1f)]
 	private float velocidad;
@@ -24,7 +24,7 @@ public class CamaraSigueJugador : MonoBehaviour {
 	#region Metodos de Unity
 	private void Start()
 	{
-		nave = GameObject.FindGameObjectWithTag("Player").transform;
+		naveTR = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 
 	void FixedUpdate()
@@ -43,16 +43,16 @@ public class CamaraSigueJugador : MonoBehaviour {
 
 	private void modo3D()
 	{
-		Vector3 posDeseada = nave.position + offset3D;
+		Vector3 posDeseada = naveTR.position + offset3D;
 		Vector3 posRefinada = Vector3.Lerp(transform.position, posDeseada, velocidad);
 		transform.position = posRefinada;
 
-		transform.LookAt(nave);
+		transform.LookAt(naveTR);
 	}
 
 	private void modo2D()
 	{
-		Vector3 posDeseada = nave.position + offset2D;
+		Vector3 posDeseada = naveTR.position + offset2D;
 		Vector3 posRefinada = Vector3.Lerp(transform.position, posDeseada, velocidad);
 		posRefinada.y = 3357f;
 		posRefinada.x = 0;
