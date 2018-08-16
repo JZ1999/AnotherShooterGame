@@ -7,6 +7,8 @@ public class cambiarCamara : MonoBehaviour {
 	private GameObject[] camaras;//1er camara es 3D, 2da es 2D
 	[SerializeField]
 	private KeyCode tecla;
+	[SerializeField]
+	private AudioSource cambioDeCamaraSND;
 	#endregion
 
 	#region Metodos de Unity
@@ -20,8 +22,10 @@ public class cambiarCamara : MonoBehaviour {
 		if (presionaTecla)
 		{
 			toggleCamara();
+			cambioDeCamaraSND.Play();
 		}
-    }
+
+	}
 	#endregion
 
 	void toggleCamara()

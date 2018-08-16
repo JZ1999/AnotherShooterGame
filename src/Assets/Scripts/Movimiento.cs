@@ -16,6 +16,10 @@ public class Movimiento : MonoBehaviour {
 	private float tilt;
 	[SerializeField]
 	private Boundary boundary;
+	[SerializeField]
+	private AudioSource motorSND;
+
+	private bool tocandoSonido = false;
 	#endregion
 
 	#region Metodos de Unity
@@ -24,8 +28,36 @@ public class Movimiento : MonoBehaviour {
 		float moveHorizontal, moveVertical;
 		conseguirInputs(out moveHorizontal, out moveVertical);
 		aplicarMovimiento(moveHorizontal, moveVertical);
+		sonarMotor();
 	}
+
 	#endregion
+
+	private void sonarMotor()
+	{
+		bool presionadoTecla = conseguirPresionadoTecla();
+		if (presionadoTecla)
+		{
+			if (!tocandoSonido)
+			{
+				motorSND.Play();
+				tocandoSonido = true;
+			}
+			else
+			{
+				motorSND.UnPause();
+			}
+		}
+		else
+		{
+			motorSND.Pause();
+		}
+	}
+
+	private static bool conseguirPresionadoTecla()
+	{
+		return Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
+	}
 
 	private void aplicarMovimiento(float moveHorizontal, float moveVertical)
 	{
