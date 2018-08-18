@@ -7,6 +7,7 @@ TagManager:
   - camaras
   - laser
   - objeto_solido
+  - enemigo
   layers:
   - Default
   - TransparentFX

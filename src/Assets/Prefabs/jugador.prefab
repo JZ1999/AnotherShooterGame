@@ -333,6 +333,7 @@ GameObject:
   - component: {fileID: 82518948342748904}
   - component: {fileID: 114873301836573772}
   - component: {fileID: 82172202135192496}
+  - component: {fileID: 114710245668446438}
   - component: {fileID: 64026515935351482}
   m_Layer: 0
   m_Name: jugador
@@ -1793,6 +1794,19 @@ MonoBehaviour:
     zMin: -100
     zMax: 10000
   motorSND: {fileID: 82737403514522120}
+--- !u!114 &114710245668446438
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1950331215513150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9cdffdba03056c4dacfac500d0867b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tecla: 113
+  misil: {fileID: 1441632508147632, guid: 9a29857dd877e5c4daf650b2a056bde3, type: 2}
 --- !u!114 &114873301836573772
 MonoBehaviour:
   m_ObjectHideFlags: 1
