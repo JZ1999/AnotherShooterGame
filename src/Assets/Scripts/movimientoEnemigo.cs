@@ -74,14 +74,14 @@ public class movimientoEnemigo : MonoBehaviour {
 	private void conseguirInputs(out float moveHorizontal, out float moveVertical, Transform naveTR)
 	{
         float posjugador_x = naveTR.position.x;
-        float posenemigo_x = GameObject.FindGameObjectWithTag("enemigo").transform.position.x;
-        if (Mathf.Abs((posjugador_x - posenemigo_x)) <= 2)
+        float pos_enemigo_x = GameObject.FindGameObjectWithTag("enemigo").transform.position.x;
+        if (Mathf.Abs((posjugador_x - pos_enemigo_x)) <= 2)
         {
             moveHorizontal = 0;
         }
         else
         {
-            moveHorizontal = (posjugador_x - posenemigo_x)/speed;
+            moveHorizontal = (posjugador_x - pos_enemigo_x)/speed;
         }
 		moveVertical = 0;
 	}
