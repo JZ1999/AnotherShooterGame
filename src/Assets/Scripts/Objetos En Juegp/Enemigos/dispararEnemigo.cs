@@ -31,7 +31,7 @@ public class dispararEnemigo : MonoBehaviour {
     {
         if (Time.time > siguiente_disparo)
         {
-            Instantiate(bullet, transform.position, Quaternion.identity);
+            Instantiate(bullet, transform.position, Quaternion.FromToRotation(Vector3.up, transform.forward));
             laserSND.Play();
             siguiente_disparo = Time.time + cooldown;
         }
