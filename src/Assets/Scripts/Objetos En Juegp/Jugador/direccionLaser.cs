@@ -21,7 +21,7 @@ public class lasermovimientoEnemigo : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         objetivo = GameObject.FindObjectOfType<Movimiento>();
         direccionDeMovimiento = (objetivo.transform.position - transform.position).normalized * velocidadDeseada;
-        rb.velocity = new Vector3(direccionDeMovimiento.x, 0f, direccionDeMovimiento.z);
+        rb.velocity = new Vector3(direccionDeMovimiento.x, direccionDeMovimiento.y, direccionDeMovimiento.z);
     }
 
     private void Update()
