@@ -1,5 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [DisallowMultipleComponent]
 public class pausa : MonoBehaviour {
@@ -9,6 +9,7 @@ public class pausa : MonoBehaviour {
 	private KeyCode tecla;
 	[SerializeField]
 	private GameObject menu;
+	public static bool juegoEnPausa = false;
 	#endregion
 
 	#region Metodos de Unity
@@ -17,14 +18,43 @@ public class pausa : MonoBehaviour {
 	{
 		if (Input.GetKeyDown(tecla))
 		{
-			toggleMenu();
+			if (toggleMenu())
+				pausar();
+			else
+				continuar();
 		}
 	}
 
-	private void toggleMenu()
-	{
-		menu.active = !menu.active;
-	}
 
 	#endregion
+
+	private bool toggleMenu()
+	{
+		menu.active = !menu.active;
+		Debug.Log(menu.active);
+		return menu.active;
+	}
+
+
+	public void continuar()
+	{
+		menu.active = false;
+		Time.timeScale = 1f;
+		juegoEnPausa = false;
+	}
+
+	public void pausar()
+	{
+		menu.active = true;
+		Time.timeScale = 0f;
+		juegoEnPausa = true;
+	}
+
+	public void salir()
+	{
+		menu.active = false;
+		Time.timeScale = 1f;
+		juegoEnPausa = false;
+		SceneManager.LoadScene(0);
+	}
 }

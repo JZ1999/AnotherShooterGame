@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using System.IO;
 //using UnityStandardAssets.ImageEffects;
 /// <summary>
@@ -360,7 +361,8 @@ namespace GreatArcStudios
         /// </summary>
         public void Restart()
         {
-            Application.LoadLevel(Application.loadedLevel);
+			//Application.LoadLevel(Application.loadedLevel);
+			SceneManager.LoadScene(1);
             uiEventSystem.firstSelectedGameObject = defualtSelectedMain;
         }
         /// <summary>
@@ -929,7 +931,7 @@ namespace GreatArcStudios
             catch
             {
                 Debug.Log(" Finding main camera now...it is still suggested that you manually assign this");
-                mainCam = Camera.main;
+				mainCam = Camera.main;
                 mainCam.farClipPlane = f;
 
             }

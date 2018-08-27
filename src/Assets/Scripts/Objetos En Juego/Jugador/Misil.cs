@@ -30,7 +30,8 @@ public class Misil : MonoBehaviour {
 			Vector3 posDeseada = objetivoTR.position;
 			transform.LookAt(posDeseada);
 			rb.AddForce(transform.forward * constanteVelocidad * velocidad);
-		}catch(Exception e) {
+		}catch (Exception)
+		{
 			explotar();
 		}
 

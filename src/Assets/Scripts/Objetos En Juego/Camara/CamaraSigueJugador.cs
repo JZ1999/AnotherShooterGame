@@ -32,7 +32,7 @@ public class CamaraSigueJugador : MonoBehaviour {
 			if (naveTR != null)
 				AjustarPosicionRotacion();
 		}
-		catch(Exception e)
+		catch(Exception)
 		{
 			//No existe el naveTR
 		}
