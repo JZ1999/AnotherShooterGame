@@ -6,24 +6,37 @@ public class movimientCuboTMP : MonoBehaviour {
 	#region Variables
 	[SerializeField]
 	private float speed;
-	private int side = 1;
+	private int direccion = 1;
     #endregion
 
     #region Metodos de Unity
-    void Start () {
-        
-    }
     
-    void Update () {
+    void Update ()
+	{
+		if (!pausa.juegoEnPausa)
+		{
+			mover();
+		}
+	}
+
+	#endregion
+
+	private void mover()
+	{
+		identificarDireccion();
+		Vector3 vecDeseado = new Vector3(1, 0) * speed * direccion;
+		gameObject.transform.Translate(vecDeseado);
+	}
+
+	private void identificarDireccion()
+	{
 		if (gameObject.transform.position.x < -800)
 		{
-			side = 1;
+			direccion = 1;
 		}
 		else if (gameObject.transform.position.x > 800)
 		{
-			side = -1;
+			direccion = -1;
 		}
-		gameObject.transform.Translate(new Vector3(1,0) * speed * side);
 	}
-    #endregion
 }

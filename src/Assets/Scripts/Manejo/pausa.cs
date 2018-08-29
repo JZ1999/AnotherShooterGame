@@ -22,6 +22,7 @@ public class pausa : MonoBehaviour {
 				pausar();
 			else
 				continuar();
+				
 		}
 	}
 
@@ -30,31 +31,40 @@ public class pausa : MonoBehaviour {
 
 	private bool toggleMenu()
 	{
-		menu.active = !menu.active;
-		Debug.Log(menu.active);
-		return menu.active;
+		menu.SetActive(!menu.activeInHierarchy);
+		return menu.activeInHierarchy;
 	}
 
 
 	public void continuar()
 	{
-		menu.active = false;
+		menu.SetActive(false);
 		Time.timeScale = 1f;
 		juegoEnPausa = false;
 	}
 
 	public void pausar()
 	{
-		menu.active = true;
+		menu.SetActive(true);
 		Time.timeScale = 0f;
 		juegoEnPausa = true;
 	}
 
 	public void salir()
 	{
-		menu.active = false;
+		menu.SetActive(false);
 		Time.timeScale = 1f;
 		juegoEnPausa = false;
 		SceneManager.LoadScene(0);
+	}
+
+	public void reiniciar()
+	{
+		Time.timeScale = 1f;
+		menu.SetActive(false);
+		juegoEnPausa = false;
+		string nombreEscena = SceneManager.GetActiveScene().name;
+		SceneManager.LoadScene(nombreEscena);
+		//uiEventSystem.firstSelectedGameObject = defualtSelectedMain;
 	}
 }

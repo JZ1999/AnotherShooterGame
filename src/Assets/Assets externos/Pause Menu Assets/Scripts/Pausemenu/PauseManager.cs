@@ -362,6 +362,7 @@ namespace GreatArcStudios
         public void Restart()
         {
 			//Application.LoadLevel(Application.loadedLevel);
+			Time.timeScale = 1f;
 			SceneManager.LoadScene(1);
             uiEventSystem.firstSelectedGameObject = defualtSelectedMain;
         }
@@ -425,6 +426,7 @@ namespace GreatArcStudios
         public void returnToMenu()
         {
             Application.LoadLevel(mainMenu);
+			Time.timeScale = 1f;
             uiEventSystem.SetSelectedGameObject(defualtSelectedMain);
         }
 
@@ -989,7 +991,7 @@ namespace GreatArcStudios
         public void updateTerrainLod(float qual)
         {
             try { if (useSimpleTerrain == true) { simpleTerrain.heightmapMaximumLOD = (int)qual; } else { terrain.heightmapMaximumLOD = (int)qual; } }
-            catch { Debug.Log("Terrain not assigned"); return; }
+            catch {return; }
 
         }
         /// <summary>
@@ -1054,7 +1056,7 @@ namespace GreatArcStudios
             }
             catch
             {
-                Debug.Log("No AO post processing found");
+                /*Debug.Log("No AO post processing found");*/
                 return;
             }
         }
