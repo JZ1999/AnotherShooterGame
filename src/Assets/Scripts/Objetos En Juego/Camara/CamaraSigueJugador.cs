@@ -61,7 +61,7 @@ public class CamaraSigueJugador : MonoBehaviour {
 	{
 		Vector3 posDeseada = naveTR.position + offset2D;
 		Vector3 posRefinada = Vector3.Lerp(transform.position, posDeseada, velocidad);
-		posRefinada.y = 3357f;
+		posRefinada.y = 100;
 		posRefinada.x = 0;
 		transform.position = posRefinada;
 	}

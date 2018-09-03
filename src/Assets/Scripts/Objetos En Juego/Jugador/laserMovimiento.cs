@@ -2,7 +2,7 @@
 
 [DisallowMultipleComponent]
 public class laserMovimiento : MonoBehaviour {
-	private const int constVelocidad = 1000;
+	private const int constVelocidad = 10;
 
 	#region Variables
 	[SerializeField]
@@ -12,14 +12,19 @@ public class laserMovimiento : MonoBehaviour {
 
 	#region Metodos de Unity
 	void Start () {
-		float velocidadDeseada = velocidad * Time.deltaTime * constVelocidad;//Multiplicado por 100 para no tener que usar
+		float velocidadDeseada = velocidad * Time.deltaTime * constVelocidad;//Multiplicado por constVelocidad para no tener que usar
 																//valores tan altos en el inspector de velocidad
 		GetComponent<Rigidbody>().velocity = new Vector3(0,0, velocidadDeseada);
     }
 
 	private void Update()
 	{
-		if (tiempoDeVida<=0)
+		despawn();
+	}
+
+	private void despawn()
+	{
+		if (tiempoDeVida <= 0)
 		{
 			Destroy(gameObject);
 		}

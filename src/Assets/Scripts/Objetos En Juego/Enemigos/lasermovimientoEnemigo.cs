@@ -2,7 +2,7 @@
 
 public class lasermovimientoEnemigo : MonoBehaviour {
 
-    private const int constVelocidad = 1000;
+    private const int constVelocidad = 10;
 
     #region Variables
     [SerializeField]
@@ -16,9 +16,9 @@ public class lasermovimientoEnemigo : MonoBehaviour {
     #region Metodos de Unity
     void Start()
     {
-        float velocidadDeseada = velocidad * Time.deltaTime * constVelocidad;//Multiplicado por 1000 para no tener que usar
-                                                                             //valores tan altos en el inspector de velocidad
-        rb = GetComponent<Rigidbody>();
+        float velocidadDeseada = velocidad * Time.deltaTime * constVelocidad;//Multiplicado por constVelocidad para no tener que usar
+																			 //valores tan altos en el inspector de velocidad
+		rb = GetComponent<Rigidbody>();
         objetivo = GameObject.FindObjectOfType<Movimiento>();
         direccionDeMovimiento = (objetivo.transform.position - transform.position).normalized * velocidadDeseada;
         rb.velocity = new Vector3(direccionDeMovimiento.x, direccionDeMovimiento.y, direccionDeMovimiento.z);

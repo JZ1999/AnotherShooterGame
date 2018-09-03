@@ -30,11 +30,11 @@ public class movimientCuboTMP : MonoBehaviour {
 
 	private void identificarDireccion()
 	{
-		if (gameObject.transform.position.x < -800)
+		if (gameObject.transform.position.x < -15)
 		{
 			direccion = 1;
 		}
-		else if (gameObject.transform.position.x > 800)
+		else if (gameObject.transform.position.x > 15)
 		{
 			direccion = -1;
 		}

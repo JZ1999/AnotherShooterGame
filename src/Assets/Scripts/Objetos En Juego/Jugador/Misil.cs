@@ -4,10 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [DisallowMultipleComponent]
 public class Misil : MonoBehaviour {
-	private const int constanteVelocidad = 200;
+	private const int constanteVelocidad = 2;
+	private float tiempoDeVida = 6f;
 
 	#region Variables
-
 	private Rigidbody rb;
 	private Transform objetivoTR;
 	[SerializeField]
@@ -35,7 +35,13 @@ public class Misil : MonoBehaviour {
 			explotar();
 		}
 
-    }
+		if (tiempoDeVida <= 0)
+		{
+			explotar();
+		}
+		tiempoDeVida -= Time.deltaTime;
+
+	}
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -49,10 +55,9 @@ public class Misil : MonoBehaviour {
 	private void explotar()
 	{
 		explosionSND.Play();
-		Instantiate(explosion, objetivoTR);
+		Instantiate(explosion, transform.position, Quaternion.identity);
 		gameObject.GetComponent<MeshRenderer>().enabled = false;
-		transform.position = new Vector3(1000, 0, 0);//Se hace esto para que no vuelva a chocar aun siendo invisible
-		Destroy(gameObject, 3);//3 segundos para que explosionSND suene todo
+		Destroy(gameObject);
 	}
 	#endregion
 }
