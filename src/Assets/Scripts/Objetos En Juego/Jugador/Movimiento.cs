@@ -8,6 +8,11 @@ public class Boundary
 
 [DisallowMultipleComponent]
 public class Movimiento : MonoBehaviour {
+	[SerializeField]
+	[Tooltip("Valor que define que tanto es la atraccion gravitacional")]
+	[Range(0.1f,20)]
+	private float denominador;
+
 
 	#region Variables
 	[SerializeField]
@@ -19,12 +24,23 @@ public class Movimiento : MonoBehaviour {
 	[SerializeField]
 	private AudioSource motorSND;
 
+	private GameObject objGravedad;
+	private bool jalarGravedad = false;//Booleano que decide si está en campo
+									//gravitacional
+
 	private bool tocandoSonido = false;
 	#endregion
 
 	#region Metodos de Unity
+	private void Start()
+	{
+		objGravedad = GameObject.FindGameObjectWithTag("gravitacional");
+	}
+
 	void FixedUpdate()
 	{
+		jalarGravedad = objGravedad.GetComponent<AtraerGravedad>().jalar;
+
 		float moveHorizontal, moveVertical;
 		conseguirInputs(out moveHorizontal, out moveVertical);
 		aplicarMovimiento(moveHorizontal, moveVertical);
@@ -63,7 +79,15 @@ public class Movimiento : MonoBehaviour {
 	{
 		Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 		GetComponent<Rigidbody>().velocity = movement * speed;
+		
+		efectoGravitacional();
+		aplicarBarreras();
 
+		GetComponent<Rigidbody>().rotation = Quaternion.Euler(0.0f, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
+	}
+
+	private void aplicarBarreras()
+	{
 		//Esta parte hace la restriccion de movimiento (Barreras)
 		GetComponent<Rigidbody>().position = new Vector3
 		(
@@ -71,8 +95,14 @@ public class Movimiento : MonoBehaviour {
 			0.0f,
 			Mathf.Clamp(GetComponent<Rigidbody>().position.z, boundary.zMin, boundary.zMax)
 		);
+	}
 
-		GetComponent<Rigidbody>().rotation = Quaternion.Euler(0.0f, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
+	private void efectoGravitacional()
+	{
+		Vector3 offsetPorLaGravedad = objGravedad.transform.position/denominador;
+		if (jalarGravedad)
+			//GetComponent<Rigidbody>().velocity += offsetPorLaGravedad;
+			GetComponent<Rigidbody>().velocity += offsetPorLaGravedad;
 	}
 
 	private void conseguirInputs(out float moveHorizontal, out float moveVertical)
@@ -80,4 +110,7 @@ public class Movimiento : MonoBehaviour {
 		moveHorizontal = Input.GetAxis("Horizontal");
 		moveVertical = Input.GetAxis("Vertical");
 	}
+
+	//Parte de gravedad
+
 }
