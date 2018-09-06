@@ -1,4 +1,4 @@
-# Prototipo
+# Another Shooter Game
 
 ## Bases del juego
 
@@ -139,19 +139,10 @@ Aplicaremos el sprint usando esta pagina web [**scrumblr.ca/anothershootergame**
 
 Se usa este modelo:
 
-|[Backlog](https://programacionymas.com/blog/scrum-product-backlog)|Pendiente|Comenzando|[Testing](https://unity3d.com/es/learn/tutorials/topics/production/unity-test-tools)|Revision|Completo|
-| ------------- |:-------------:| -----:|
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-
-| [Backlog](https://programacionymas.com/blog/scrum-product-backlog)  | Pendiente |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| [Backlog](https://programacionymas.com/blog/scrum-product-backlog)  | Pendiente | Comenzando | Revision | Completo |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+|   |   |   |   |   |
+|   |   |   |   |   |
 
 En vez de hacer reuniones todo los dias como se hace en scrum,
 se harán reuniones cada fin de semana para hablar sobre modificaciones,
@@ -169,11 +160,8 @@ Usando los valores y principios de [Agile](https://es.wikipedia.org/wiki/Desarro
 [Scrumblr](http://www.scrumblr.com/anothershootergame) ademas de usar los marcadores rojos para
 enseñar cuales tiquetes son los mas importantes, sino tambien se usará lo siguiente:
 
-<p style="color:blue"><b>■ Tiquete de Joseph</b></p>
-<p style="color:yellow"><b>■ Tiquete de Ricardo</b></p>
-
-- ![#1589F0](https://placehold.it/15/1589F0/000000?text=+) `#1589F0`
-- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) `#c5f015`
+- ![#1589F0](https://placehold.it/15/1589F0/000000?text=+) `Joseph`
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) `Ricardo`
 
 ## Desarrollo Lean
 
@@ -194,8 +182,7 @@ No se debe ir a otro componente hasta terminar este, todo esto utilizando los pr
 ## Creditos
 
 #### Ricardo Viquez Mora
-[LinkedIn](https://www.linkedin.com/in/joseph-david-zamora-murillo-3645a7148/)
-[Github](https://www.github.com/JZ1999)
+
 ***
 
 #### Joseph David Zamora Murillo
@@ -204,14 +191,13 @@ No se debe ir a otro componente hasta terminar este, todo esto utilizando los pr
 ***
 
 #### Sharon Arley Solano  
-[LinkedIn](https://www.linkedin.com/in/joseph-david-zamora-murillo-3645a7148/)
+
 
 ***
 #### Gustavo Enrique Godinez Vargas 
-[LinkedIn](https://www.linkedin.com/in/joseph-david-zamora-murillo-3645a7148/)
+
 ***
 
 #### Adrian Alejandro Iriarte 
-[LinkedIn](https://www.linkedin.com/in/joseph-david-zamora-murillo-3645a7148/)
-[Pagina Web](https://www.linkedin.com/in/joseph-david-zamora-murillo-3645a7148/)
+[Pagina Web](http://www.aleiriarte.com//)
 ***
