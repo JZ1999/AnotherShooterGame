@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
-public class efectoVisualGravitacional : MonoBehaviour {
+public class EfectoVisualNebulosa : MonoBehaviour {
 
 	#region Variables
 	private float fogDensity;
@@ -12,12 +12,11 @@ public class efectoVisualGravitacional : MonoBehaviour {
 	private float fogDensity_Deseado;
 	[SerializeField]
 	private Color fogColor_Deseado;
-	
+
 	public static bool activado;
 	#endregion
 
 	#region Metodos de Unity
-
 	private void Start()
 	{
 		fogColor = RenderSettings.fogColor;
@@ -26,8 +25,10 @@ public class efectoVisualGravitacional : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.CompareTag("gravitacional"))
+		Debug.Log("si");
+		if (other.CompareTag("nebulosa"))
 		{
+			Debug.Log("si");
 			RenderSettings.fogDensity = fogDensity_Deseado;
 			RenderSettings.fogColor = fogColor_Deseado;
 			activado = true;
@@ -36,7 +37,7 @@ public class efectoVisualGravitacional : MonoBehaviour {
 
 	private void OnTriggerExit(Collider other)
 	{
-		if (other.CompareTag("gravitacional"))
+		if (other.CompareTag("nebulosa"))
 		{
 			RenderSettings.fogDensity = fogDensity;
 			RenderSettings.fogColor = fogColor;
