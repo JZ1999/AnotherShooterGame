@@ -10,7 +10,7 @@ public class recibirDannoJugador : MonoBehaviour {
 	private int vida;
 	[SerializeField]
 	private GameObject[] objetosDanninos;
-	private DannoEnemigo dannoInfo;//Guarda la informacion
+    private DannoEnemigo dannoInfo;//Guarda la informacion
 								   //sobre de cual objeto esta
 								   //recibiendo daño
 	#endregion
@@ -18,15 +18,15 @@ public class recibirDannoJugador : MonoBehaviour {
 
 	#region Metodos de Unity
 	private void Start () {
-		vida = info.vida;
+        vida = info.vida;
     }
-
+    
 	private void OnTriggerEnter(Collider other)
 	{
 		asignarDannoInfo(other);
 		muerte();
 	}
-
+    
 	private void asignarDannoInfo(Collider other)
 	{
 		foreach (var obj in objetosDanninos)
@@ -44,12 +44,12 @@ public class recibirDannoJugador : MonoBehaviour {
 		if (vida <= 0)
 		{
 			Destroy(gameObject);
-		}
+        }
 	}
 
 	private void perderVida(Collider other)
 	{
 		vida -= dannoInfo.danno;
 	}
-	#endregion
+    #endregion
 }
