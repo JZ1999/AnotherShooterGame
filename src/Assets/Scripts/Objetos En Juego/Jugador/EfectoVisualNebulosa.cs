@@ -25,10 +25,8 @@ public class EfectoVisualNebulosa : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("si");
 		if (other.CompareTag("nebulosa"))
 		{
-			Debug.Log("si");
 			RenderSettings.fogDensity = fogDensity_Deseado;
 			RenderSettings.fogColor = fogColor_Deseado;
 			activado = true;

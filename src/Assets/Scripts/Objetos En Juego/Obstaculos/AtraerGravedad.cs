@@ -5,11 +5,17 @@ public class AtraerGravedad : MonoBehaviour {
 
 	#region Variables
 	[HideInInspector]
-	public bool jalar = false;
+	private bool jalar = false;//Este variable publico lo lee otros objetos (i.e. El jugador )
+
+	public bool Jalar
+	{
+		get{return jalar;}
+		set{jalar = value;}
+	}
+
 	#endregion
 
 	#region Metodos de Unity
-
 
 	private void OnTriggerEnter(Collider other)
 	{

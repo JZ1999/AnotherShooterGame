@@ -39,7 +39,7 @@ public class Movimiento : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-		jalarGravedad = objGravedad.GetComponent<AtraerGravedad>().jalar;
+		jalarGravedad = objGravedad.GetComponent<AtraerGravedad>().Jalar;
 
 		float moveHorizontal, moveVertical;
 		conseguirInputs(out moveHorizontal, out moveVertical);
@@ -101,7 +101,6 @@ public class Movimiento : MonoBehaviour {
 	{
 		Vector3 offsetPorLaGravedad = objGravedad.transform.position/denominador;
 		if (jalarGravedad)
-			//GetComponent<Rigidbody>().velocity += offsetPorLaGravedad;
 			GetComponent<Rigidbody>().velocity += offsetPorLaGravedad;
 	}
 
@@ -110,7 +109,5 @@ public class Movimiento : MonoBehaviour {
 		moveHorizontal = Input.GetAxis("Horizontal");
 		moveVertical = Input.GetAxis("Vertical");
 	}
-
-	//Parte de gravedad
 
 }
