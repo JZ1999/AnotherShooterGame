@@ -24,7 +24,8 @@ public class Movimiento : MonoBehaviour {
 	[SerializeField]
 	private AudioSource motorSND;
 
-	private GameObject objGravedad;
+	private GameObject[] objsGravedad;//Lista de objetos que atraen
+	private GameObject objGravedad;//Objeto que atrae actualmente
 	private bool jalarGravedad = false;//Booleano que decide si está en campo
 									//gravitacional
 
@@ -34,12 +35,21 @@ public class Movimiento : MonoBehaviour {
 	#region Metodos de Unity
 	private void Start()
 	{
-		objGravedad = GameObject.FindGameObjectWithTag("gravitacional");
+		objsGravedad = GameObject.FindGameObjectsWithTag("gravitacional");
 	}
 
 	void FixedUpdate()
 	{
-		jalarGravedad = objGravedad.GetComponent<AtraerGravedad>().Jalar;
+		foreach (var obj in objsGravedad)
+		{
+			if (obj.GetComponent<AtraerGravedad>().Jalar)
+			{
+				objGravedad = obj;
+				jalarGravedad = true;
+				break;
+			}else
+				jalarGravedad = false;
+		}
 
 		float moveHorizontal, moveVertical;
 		conseguirInputs(out moveHorizontal, out moveVertical);
@@ -99,9 +109,11 @@ public class Movimiento : MonoBehaviour {
 
 	private void efectoGravitacional()
 	{
-		Vector3 offsetPorLaGravedad = objGravedad.transform.position/denominador;
 		if (jalarGravedad)
+		{
+			Vector3 offsetPorLaGravedad = objGravedad.transform.position / denominador;
 			GetComponent<Rigidbody>().velocity += offsetPorLaGravedad;
+		}
 	}
 
 	private void conseguirInputs(out float moveHorizontal, out float moveVertical)
