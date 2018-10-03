@@ -6,15 +6,18 @@ public class recibirDanno : MonoBehaviour {
 
 	#region Variables
 	[SerializeField]
+	private Enemigo informacionEnemigo;
+	[SerializeField]
 	private DatosDeJugador info;
 
-	private int vida = 2;
+	private int vida;
 	private int danno;
     #endregion
 
     #region Metodos de Unity
     void Start () {
 		danno = info.danno;
+		vida = informacionEnemigo.escudos;
 	}
 
 	private void OnTriggerEnter(Collider other)

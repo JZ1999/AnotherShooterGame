@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [DisallowMultipleComponent]
 public class Misil : MonoBehaviour {
-	private const int constanteVelocidad = 2;
+	private const int constanteVelocidad = 3;
 	private float tiempoDeVida = 6f;
 
 	#region Variables

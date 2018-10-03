@@ -2,10 +2,16 @@
 
 [DisallowMultipleComponent]
 public class movimientoEnemigo : MonoBehaviour {
+	//Formula de movimiento es velocidad^constane_velocidad_exp * constante_velocidad 
 
 	#region Variables
+	private const float constante_velocidad = 1.3f;
+
+
 	[SerializeField]
-	private float speed;
+	private Enemigo informacion;
+	
+	private float velocidad;
 	[SerializeField]
 	private float tilt;
 	[SerializeField]
@@ -13,11 +19,18 @@ public class movimientoEnemigo : MonoBehaviour {
 	[SerializeField]
 	private AudioSource motorSND;
     private Transform naveTR;
+	private Vector3 tiltOriginal;
 
     private bool tocandoSonido = false;
 	#endregion
 
 	#region Metodos de Unity
+	private void Start()
+	{
+		velocidad = informacion.velocidad;
+		tiltOriginal = transform.position;
+	}
+
 	void FixedUpdate()
 	{
 		float moveHorizontal, moveVertical;
@@ -58,7 +71,7 @@ public class movimientoEnemigo : MonoBehaviour {
 	private void aplicarMovimiento(float moveHorizontal, float moveVertical)
 	{
 		Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-		GetComponent<Rigidbody>().velocity = movement * speed;
+		GetComponent<Rigidbody>().velocity = movement * velocidad * constante_velocidad;
 
 		//Esta parte hace la restriccion de movimiento (Barreras)
 		GetComponent<Rigidbody>().position = new Vector3
@@ -67,22 +80,36 @@ public class movimientoEnemigo : MonoBehaviour {
 			0.0f,
 			Mathf.Clamp(GetComponent<Rigidbody>().position.z, boundary.zMin, boundary.zMax)
 		);
+		aplicarRotacion();
+	}
 
-		GetComponent<Rigidbody>().rotation = Quaternion.Euler(0.0f, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
+	private void aplicarRotacion()
+	{
+		float dir = -naveTR.transform.position.x + transform.position.x;
+		GetComponent<Rigidbody>().rotation = Quaternion.Euler(-20, dir, GetComponent<Rigidbody>().velocity.x * -tilt);
 	}
 
 	private void conseguirInputs(out float moveHorizontal, out float moveVertical, Transform naveTR)
 	{
         float posjugador_x = naveTR.position.x;
-        //float pos_enemigo_x = GameObject.FindGameObjectWithTag("enemigo").transform.position.x;
-        if (Mathf.Abs((posjugador_x - transform.position.x)) <= 2)
+		float posjugador_z = naveTR.position.z;
+
+		if (Mathf.Abs((posjugador_x - transform.position.x)) <= 2)
         {
             moveHorizontal = 0;
         }
         else
         {
-            moveHorizontal = (posjugador_x - transform.position.x) /speed;
+			moveHorizontal = (posjugador_x - transform.position.x) < 0 ? -1 : 1;
         }
-		moveVertical = 0;
+		
+		if (Vector3.Distance(naveTR.position, transform.position) >= 36)
+		{
+			moveVertical = 0;
+		}
+		else
+		{
+			moveVertical = -((posjugador_z - transform.position.z) / velocidad)/5;
+		}
 	}
 }
