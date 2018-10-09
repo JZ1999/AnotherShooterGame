@@ -13,14 +13,16 @@ public class movimiento_asteroide : MonoBehaviour {
 	private float velocidad = 0;
 
 	private Eje eje;
+	private Vector3 vect;
     #endregion
 
     #region Metodos de Unity
     void Start () {
-		transform.localScale = Vector3.one * Random.Range(0.2f, 1.5f);
-		velocidad += Random.Range(0, 400);
-		Vector3 vect = new Vector3(0, 0, Mathf.Abs(30 + velocidad));
-		GetComponent<Rigidbody>().AddForce(-vect*15);
+		//transform.localScale = Vector3.one * Random.Range(0.2f, 1.5f);
+		//velocidad += Random.Range(1, 10);
+		//vect = new Vector3(0, 0, Mathf.Abs(velocidad));
+		//GetComponent<Rigidbody>().AddForce(-vect*15);
+		//transform.Translate(vect);
 		int n = Random.Range(0, 3);
 		switch (n)
 		{
@@ -40,8 +42,10 @@ public class movimiento_asteroide : MonoBehaviour {
     }
     
     void FixedUpdate () {
-		
-		switch (eje)
+		//transform.Translate(new Vector3(0,0,GameObject.FindGameObjectWithTag("Player").transform.position.z));
+		transform.position -= new Vector3(0, 0, GameObject.FindGameObjectWithTag("Player").transform.position.z);
+
+		/*switch (eje)
 		{
 			case Eje.X:
 				GetComponent<Rigidbody>().rotation = Quaternion.Euler(transform.position.x, 0, 0);
@@ -55,7 +59,7 @@ public class movimiento_asteroide : MonoBehaviour {
 			default:
 				GetComponent<Rigidbody>().rotation = Quaternion.Euler(GetComponent<Rigidbody>().velocity.x, 0, 0);
 				break;
-		}
-    }
+		}*/
+	}
     #endregion
 }
