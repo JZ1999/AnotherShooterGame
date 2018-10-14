@@ -12,7 +12,7 @@ public class gameover : MonoBehaviour {
 
     #region Metodos de Unity
 
-    private void Update()
+    private void FixedUpdate()
 	{
         if (GameObject.FindGameObjectWithTag("Player") == null && juegoEnPausa == false)
 		{
