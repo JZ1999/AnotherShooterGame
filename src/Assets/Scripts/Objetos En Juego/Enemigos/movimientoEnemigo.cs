@@ -36,11 +36,26 @@ public class movimientoEnemigo : MonoBehaviour {
 		float moveHorizontal, moveVertical;
         naveTR = GameObject.FindGameObjectWithTag("Player").transform;
         conseguirInputs(out moveHorizontal, out moveVertical, naveTR);
-        aplicarMovimiento(moveHorizontal, moveVertical);
-		sonarMotor();
+		if (estaEnRango())
+		{
+			aplicarMovimiento(moveHorizontal, moveVertical);
+			sonarMotor();
+		}
+		else
+		{
+			GetComponent<Rigidbody>().velocity = Vector3.zero;
+			motorSND.Pause();
+		}
 	}
 
 	#endregion
+
+	private bool estaEnRango()
+	{
+		Vector3 posJugador = GameObject.FindGameObjectWithTag("Player").transform.position;
+		float distanciaEnemigoJugador = Vector3.Distance(transform.position, posJugador);
+		return distanciaEnemigoJugador <= informacion.getRango();
+	}
 
 	private void sonarMotor()
 	{

@@ -16,6 +16,18 @@ public class Enemigo : ScriptableObject
 	public int maniobrabilidad;
 	[Range(0, 10)]
 	public int recompensa;
+	[Tooltip("El rango mínimo de cualquier enemigo")]
+	[Range(10, 30)]
+	public int rangoOffset;
+	[Range(0, 10)]
+	[SerializeField]
+	private int rango;
+	
+
+	public int getRango()
+	{
+		return this.rango*this.rangoOffset;
+	}
 
 	[Space]
 	[Header("Información")]

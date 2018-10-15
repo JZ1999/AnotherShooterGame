@@ -5,6 +5,8 @@ public class dispararEnemigo : MonoBehaviour {
 
 	#region Variables
 	[SerializeField]
+	private Enemigo info;
+	[SerializeField]
 	private GameObject bullet;
 	[SerializeField]
 	private AudioSource laserSND;
@@ -28,14 +30,21 @@ public class dispararEnemigo : MonoBehaviour {
     #endregion
 
     void TiempodeDisparar()
-    {
-        if (Time.time > siguiente_disparo)
-        {
+	{
+		if (Time.time > siguiente_disparo && estaEnRango())
+		{
 			Quaternion rotacion = Quaternion.FromToRotation(Vector3.up, transform.forward);
 			Vector3 posicion = transform.position;
 			Instantiate(bullet, posicion, rotacion);
-            laserSND.Play();
-            siguiente_disparo = Time.time + cooldown;
-        }
-    }
+			laserSND.Play();
+			siguiente_disparo = Time.time + cooldown;
+		}
+	}
+
+	private bool estaEnRango()
+	{
+		Vector3 posJugador = GameObject.FindGameObjectWithTag("Player").transform.position;
+		float distanciaEnemigoJugador = Vector3.Distance(transform.position, posJugador);
+		return distanciaEnemigoJugador <= info.getRango();
+	}
 }
