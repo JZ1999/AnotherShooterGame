@@ -3,10 +3,11 @@
 [System.Serializable]
 public class Boundary
 {
-	public float xMin, xMax, zMin, zMax;
+	public float xMin, xMax;
 }
 
 [DisallowMultipleComponent]
+[RequireComponent(typeof(Rigidbody))]
 public class Movimiento : MonoBehaviour {
 	[SerializeField]
 	[Tooltip("Valor que define que tanto es la atraccion gravitacional")]
@@ -62,21 +63,24 @@ public class Movimiento : MonoBehaviour {
 	private void sonarMotor()
 	{
 		bool presionadoTecla = conseguirPresionadoTecla();
-		if (presionadoTecla)
+		if (presionadoTecla && !gameover.juegoEnPausa)
 		{
 			if (!tocandoSonido)
 			{
-				motorSND.Play();
+				//motorSND.Play();
 				tocandoSonido = true;
+				motorSND.mute = false;
 			}
 			else
 			{
-				motorSND.UnPause();
+				//motorSND.UnPause();
+				motorSND.mute = false;
 			}
 		}
 		else
 		{
-			motorSND.Pause();
+			//motorSND.Pause();
+			motorSND.mute = true;
 		}
 	}
 
@@ -103,7 +107,7 @@ public class Movimiento : MonoBehaviour {
 		(
 			Mathf.Clamp(GetComponent<Rigidbody>().position.x, boundary.xMin, boundary.xMax),
 			0.0f,
-			Mathf.Clamp(GetComponent<Rigidbody>().position.z, boundary.zMin, boundary.zMax)
+			GetComponent<Rigidbody>().position.z
 		);
 	}
 

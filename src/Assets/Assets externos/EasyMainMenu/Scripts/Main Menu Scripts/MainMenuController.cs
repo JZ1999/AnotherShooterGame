@@ -18,17 +18,60 @@ public class MainMenuController : MonoBehaviour {
     public GameObject GfxPanel;
     public GameObject LoadGamePanel;
 
-    // Use this for initialization
-    void Start () {
+	public GameObject IntelPanel;
+	public GameObject ComoJugarPanel;
+	[Header("Imagen de fondo")]
+	public GameObject BgIMG;
+	
+
+	// Use this for initialization
+	void Start () {
         anim = GetComponent<Animator>();
 
         //new key
         PlayerPrefs.SetInt("quickSaveSlot", quickSaveSlotID);
     }
+	
 
-    #region Open Different panels
+	#region Open Different panels
 
-    public void openOptions()
+	public void abrirIntel()
+	{
+		//enable respective panel
+		IntelPanel.SetActive(true);
+		StartGameOptionsPanel.SetActive(false);
+		BgIMG.SetActive(false);
+
+		//play anim for opening main options panel
+		anim.Play("buttonTweenAnims_on");
+
+		//play click sfx
+		playClickSound();
+
+		//enable BLUR
+		//Camera.main.GetComponent<Animator>().Play("BlurOn");
+
+	}
+
+	public void abrirComoJugar()
+	{
+		//enable respective panel
+		ComoJugarPanel.SetActive(true);
+		StartGameOptionsPanel.SetActive(false);
+
+		//play anim for opening main options panel
+		anim.Play("buttonTweenAnims_on");
+
+		//play click sfx
+		playClickSound();
+
+		//enable BLUR
+		//Camera.main.GetComponent<Animator>().Play("BlurOn");
+
+	}
+
+
+	public void openOptions()
     {
         //enable respective panel
         MainOptionsPanel.SetActive(true);
@@ -140,7 +183,15 @@ public class MainMenuController : MonoBehaviour {
     {
         //simply play anim for CLOSING main options panel
         anim.Play("buttonTweenAnims_off");
-
+		if (IntelPanel.activeSelf)
+		{
+			IntelPanel.SetActive(false);
+			BgIMG.SetActive(true);
+		}
+		else if(ComoJugarPanel.activeSelf)
+		{
+			ComoJugarPanel.SetActive(false);
+		}
         //disable BLUR
        // Camera.main.GetComponent<Animator>().Play("BlurOff");
 

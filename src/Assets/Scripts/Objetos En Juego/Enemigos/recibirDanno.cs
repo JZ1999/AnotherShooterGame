@@ -9,6 +9,10 @@ public class recibirDanno : MonoBehaviour {
 	private Enemigo informacionEnemigo;
 	[SerializeField]
 	private DatosDeJugador info;
+	[SerializeField]
+	private SimpleHealthBar barraDeVida;
+	[SerializeField]
+	private GameObject objDestruido;
 
 	private int vida;
 	private int danno;
@@ -26,10 +30,15 @@ public class recibirDanno : MonoBehaviour {
 		muerte();
 	}
 
+
+	#endregion
 	private void muerte()
 	{
 		if (vida <= 0)
 		{
+			GameObject obj = Instantiate(objDestruido, transform.position, transform.rotation);
+			obj.SetActive(true);
+
 			Destroy(gameObject, 0.2f);
 		}
 	}
@@ -39,7 +48,7 @@ public class recibirDanno : MonoBehaviour {
 		if (other.CompareTag("laser") || other.CompareTag("misil"))
 		{
 			vida -= danno;
+			barraDeVida.UpdateBar(vida, informacionEnemigo.escudos);
 		}
 	}
-	#endregion
 }

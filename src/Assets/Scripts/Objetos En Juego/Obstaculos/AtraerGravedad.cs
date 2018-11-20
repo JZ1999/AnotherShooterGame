@@ -17,6 +17,11 @@ public class AtraerGravedad : MonoBehaviour {
 
 	#region Metodos de Unity
 
+	private void Awake()
+	{
+		jalar = false;	
+	}
+
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Player"))

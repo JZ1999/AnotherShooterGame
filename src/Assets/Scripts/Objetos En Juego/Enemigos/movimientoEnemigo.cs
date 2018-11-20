@@ -19,7 +19,6 @@ public class movimientoEnemigo : MonoBehaviour {
 	[SerializeField]
 	private AudioSource motorSND;
     private Transform naveTR;
-	private Vector3 tiltOriginal;
 
     private bool tocandoSonido = false;
 	#endregion
@@ -28,16 +27,15 @@ public class movimientoEnemigo : MonoBehaviour {
 	private void Start()
 	{
 		velocidad = informacion.velocidad;
-		tiltOriginal = transform.position;
 	}
 
 	void FixedUpdate()
 	{
 		float moveHorizontal, moveVertical;
-        naveTR = GameObject.FindGameObjectWithTag("Player").transform;
-        conseguirInputs(out moveHorizontal, out moveVertical, naveTR);
 		if (estaEnRango())
 		{
+			naveTR = GameObject.FindGameObjectWithTag("Player").transform;
+			conseguirInputs(out moveHorizontal, out moveVertical, naveTR);
 			aplicarMovimiento(moveHorizontal, moveVertical);
 			sonarMotor();
 		}
@@ -52,9 +50,13 @@ public class movimientoEnemigo : MonoBehaviour {
 
 	private bool estaEnRango()
 	{
-		Vector3 posJugador = GameObject.FindGameObjectWithTag("Player").transform.position;
-		float distanciaEnemigoJugador = Vector3.Distance(transform.position, posJugador);
-		return distanciaEnemigoJugador <= informacion.getRango();
+		try
+		{
+			Vector3 posJugador = GameObject.FindGameObjectWithTag("Player").transform.position;
+			float distanciaEnemigoJugador = Vector3.Distance(transform.position, posJugador);
+			return distanciaEnemigoJugador <= informacion.getRango();
+		}
+		catch { return false; }
 	}
 
 	private void sonarMotor()
@@ -93,7 +95,7 @@ public class movimientoEnemigo : MonoBehaviour {
 		(
 			Mathf.Clamp(GetComponent<Rigidbody>().position.x, boundary.xMin, boundary.xMax),
 			0.0f,
-			Mathf.Clamp(GetComponent<Rigidbody>().position.z, boundary.zMin, boundary.zMax)
+			GetComponent<Rigidbody>().position.z
 		);
 		aplicarRotacion();
 	}

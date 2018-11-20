@@ -9,9 +9,13 @@ public class recibirDannoObstaculos : MonoBehaviour {
 	private Obstaculo informacionObstaculo;
 	[SerializeField]
 	private DatosDeJugador info;
+	[SerializeField]
+	private GameObject objDestruido;
 
 	private int vida;
 	private int danno;
+	private GameObject fracturasSpawneadas = null;//Para detectar si ya spawneo
+											//el objeto fracturado
     #endregion
 
     #region Metodos de Unity
@@ -28,9 +32,13 @@ public class recibirDannoObstaculos : MonoBehaviour {
 
 	private void muerte()
 	{
-		if (vida <= 0)
+		if (vida <= 0 && fracturasSpawneadas == null)
 		{
-			Destroy(gameObject, 0.2f);
+			GameObject obj = Instantiate(objDestruido, transform.position, transform.rotation);
+			fracturasSpawneadas = obj;
+			obj.SetActive(true);
+
+			Destroy(gameObject);
 		}
 	}
 

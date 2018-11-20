@@ -8,8 +8,6 @@ public class atraccionGravitacional : MonoBehaviour {
 	[SerializeField]
 	private Rigidbody rb;
 
-	private bool dentroDelCampo = false;
-
 	private const float G = 66.74f;
 	public static List<atraccionGravitacional> atraciones;
 	#endregion
@@ -42,7 +40,6 @@ public class atraccionGravitacional : MonoBehaviour {
 		{
 			GameObject player = GameObject.FindGameObjectWithTag("player");
 			atraciones.Add(player.GetComponent<atraccionGravitacional>());
-			Debug.Log("enter");
 		}
 	}
 

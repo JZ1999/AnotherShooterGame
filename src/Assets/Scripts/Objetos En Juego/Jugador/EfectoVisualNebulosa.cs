@@ -26,8 +26,8 @@ public class EfectoVisualNebulosa : MonoBehaviour {
 	{
 		if (other.CompareTag("nebulosa"))
 		{
-			RenderSettings.fogDensity = fogDensity_Deseado;
-			RenderSettings.fogColor = fogColor_Deseado;
+			/*RenderSettings.fogDensity = fogDensity_Deseado;
+			RenderSettings.fogColor = fogColor_Deseado;*/
 			activado = true;
 		}
 	}

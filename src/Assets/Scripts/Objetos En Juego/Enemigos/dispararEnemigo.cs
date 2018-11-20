@@ -35,7 +35,8 @@ public class dispararEnemigo : MonoBehaviour {
 		{
 			Quaternion rotacion = Quaternion.FromToRotation(Vector3.up, transform.forward);
 			Vector3 posicion = transform.position;
-			Instantiate(bullet, posicion, rotacion);
+			GameObject proyectil = Instantiate(bullet, posicion, rotacion);
+			proyectil.GetComponent<guardarDanno>().setInfo(info);
 			laserSND.Play();
 			siguiente_disparo = Time.time + cooldown;
 		}
@@ -43,8 +44,15 @@ public class dispararEnemigo : MonoBehaviour {
 
 	private bool estaEnRango()
 	{
-		Vector3 posJugador = GameObject.FindGameObjectWithTag("Player").transform.position;
-		float distanciaEnemigoJugador = Vector3.Distance(transform.position, posJugador);
-		return distanciaEnemigoJugador <= info.getRango();
+		try
+		{
+			Vector3 posJugador = GameObject.FindGameObjectWithTag("Player").transform.position;
+			float distanciaEnemigoJugador = Vector3.Distance(transform.position, posJugador);
+			return distanciaEnemigoJugador <= info.getRango();
+		}
+		catch{
+
+			return false;
+		}
 	}
 }

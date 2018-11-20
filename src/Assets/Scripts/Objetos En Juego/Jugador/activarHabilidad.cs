@@ -8,6 +8,10 @@ public class activarHabilidad : MonoBehaviour {
 	private KeyCode tecla;
 	[SerializeField]
 	private GameObject misil;
+	[SerializeField]
+	private float cooldown = 2f;
+	[SerializeField]
+	private AudioSource en_cooldownSND;
     #endregion
 
     #region Metodos de Unity
@@ -18,9 +22,16 @@ public class activarHabilidad : MonoBehaviour {
     void Update () {
 		if (Input.GetKeyDown(tecla))
 		{
-			Quaternion rotacionDeseada = Quaternion.Euler(new Vector3(0, 0, 0));
-			Instantiate(misil, transform.position, rotacionDeseada);
+			if (cooldown <= 0)
+			{
+				Quaternion rotacionDeseada = Quaternion.Euler(new Vector3(0, 0, 0));
+				Instantiate(misil, transform.position, rotacionDeseada);
+				cooldown = 2f;
+			}
+			else
+				en_cooldownSND.Play();
 		}
-    }
+		cooldown -= Time.deltaTime;
+	}
     #endregion
 }

@@ -10,9 +10,11 @@ public class recibirDannoJugador : MonoBehaviour {
 	private int vida;
 	[SerializeField]
 	private GameObject[] objetosDanninos;
-    private DannoEnemigo dannoInfo;//Guarda la informacion
-								   //sobre de cual objeto esta
-								   //recibiendo daño
+	private int danno;
+	[SerializeField]
+	private bool modoDios;
+	[SerializeField]
+	private SimpleHealthBar healthBar;
 	#endregion
 
 
@@ -31,10 +33,22 @@ public class recibirDannoJugador : MonoBehaviour {
 	{
 		foreach (var obj in objetosDanninos)
 		{
+			
 			if (obj.CompareTag(other.tag))
 			{
-				dannoInfo = obj.GetComponent<guardarDanno>().getInfo();
+				try
+				{
+					//Obstaculos
+					
+					danno = obj.GetComponent<guardarDatos>().getInfo().ataque;
+				}
+				catch(System.Exception)
+				{
+					//Proyectiles
+					danno = other.GetComponent<guardarDanno>().getInfo().ataque;
+				}
 				perderVida(other);
+				break;
 			}
 		}
 	}
@@ -49,7 +63,13 @@ public class recibirDannoJugador : MonoBehaviour {
 
 	private void perderVida(Collider other)
 	{
-		vida -= dannoInfo.danno;
+		if (!modoDios)
+		{
+			vida -= danno;
+			healthBar.UpdateBar(((float)vida / (float)info.vida) * 100, 100);
+			//healthBar.UpdateBar(50, 100);
+			Debug.Log(string.Concat("Vida: ", vida," Vida Original: ",info.vida, " Prop: ", ((float)vida / (float)info.vida)*100));
+		}
 	}
     #endregion
 }

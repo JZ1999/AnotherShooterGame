@@ -13,7 +13,6 @@ public class colisionLaser : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log(gameObject.tag);
 
 		if (gameObject.CompareTag("laser"))
 			colisionLaserJugador(other);

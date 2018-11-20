@@ -16,15 +16,21 @@ public class activarEfectoGravitacional : MonoBehaviour {
     void Update () {
 		if (efectoVisualGravitacional.activado)
 		{
-			float alpha = efectoVisualGravitacional.indice;
-			Color color_deseado = new Color(img.color.r, img.color.g, img.color.b, alpha);
-			img.color = color_deseado;
-			img.enabled = true;
+			aplicarEfecto();
 		}
 		else
 		{
 			img.enabled = false;
 		}
     }
-    #endregion
+
+	#endregion
+
+	private void aplicarEfecto()
+	{
+		float alpha = efectoVisualGravitacional.indice;
+		Color color_deseado = new Color(img.color.r, img.color.g, img.color.b, alpha);
+		img.color = color_deseado;
+		img.enabled = true;
+	}
 }

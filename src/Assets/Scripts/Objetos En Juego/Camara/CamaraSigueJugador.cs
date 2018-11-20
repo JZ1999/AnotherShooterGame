@@ -24,6 +24,12 @@ public class CamaraSigueJugador : MonoBehaviour {
 
 	#region Metodos de Unity
 
+	private void Start()
+	{
+		GetComponent<Camera>().farClipPlane = 1000f;
+		GetComponent<Camera>().nearClipPlane = 0.3f;
+	}
+
 	void FixedUpdate()
 	{
 		try
@@ -62,7 +68,6 @@ public class CamaraSigueJugador : MonoBehaviour {
 		Vector3 posDeseada = naveTR.position + offset2D;
 		Vector3 posRefinada = Vector3.Lerp(transform.position, posDeseada, velocidad);
 		posRefinada.y = 100;
-		posRefinada.x = 0;
 		transform.position = posRefinada;
 	}
 }

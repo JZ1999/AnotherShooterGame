@@ -226,7 +226,7 @@ namespace GreatArcStudios
         private float[] _beforeEffectVol;
 
         //Initial music volume
-        private float _beforeMusic;
+        private float _beforeMusic = 0;
         //Preset level
         private int _currentLevel;
         //Resoutions
@@ -325,11 +325,11 @@ namespace GreatArcStudios
             //Find terrain
             terrain = Terrain.activeTerrain;
             //Disable other panels
-            mainPanel.SetActive(false);
+            //mainPanel.SetActive(false);
             vidPanel.SetActive(false);
             audioPanel.SetActive(false);
             //Enable mask
-            mask.SetActive(false);
+            //mask.SetActive(false);
             //set last texture limit
             lastTexLimit = QualitySettings.masterTextureLimit;
             //set last shadow cascade 
@@ -341,10 +341,7 @@ namespace GreatArcStudios
             }
             catch
             {
-                if (terrain = null)
-                {
-                    Debug.Log("Terrain Not Assigned");
-                }
+                
             }
 
             //set the blur boolean to false;
@@ -425,7 +422,8 @@ namespace GreatArcStudios
         /// </summary>
         public void returnToMenu()
         {
-            Application.LoadLevel(mainMenu);
+            
+			SceneManager.LoadScene(mainMenu);
 			Time.timeScale = 1f;
             uiEventSystem.SetSelectedGameObject(defualtSelectedMain);
         }
@@ -439,20 +437,20 @@ namespace GreatArcStudios
             readUseSimpleTerrain = useSimpleTerrain;
             useSimpleTerrain = readUseSimpleTerrain;
             //colorCrossfade();
-            if (vidPanel.active == true)
+            if (vidPanel.activeSelf == true)
             {
                 pauseMenu.text = "Video Menu";
             }
-            else if (audioPanel.active == true)
+            else if (audioPanel.activeSelf == true)
             {
                 pauseMenu.text = "Audio Menu";
             }
-            else if (mainPanel.active == true)
+            else if (mainPanel.activeSelf == true)
             {
                 pauseMenu.text = "Pause Menu";
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape) && mainPanel.active == false)
+            if (Input.GetKeyDown(KeyCode.Escape) && mainPanel.activeSelf == false)
             {
 
                 uiEventSystem.SetSelectedGameObject(defualtSelectedMain);
@@ -471,7 +469,7 @@ namespace GreatArcStudios
                      blurEffect.enabled = true;
                  }  */
             }
-            else if(Input.GetKeyDown(KeyCode.Escape) && mainPanel.active == true) {
+            else if(Input.GetKeyDown(KeyCode.Escape) && mainPanel.activeSelf == true) {
                 Time.timeScale = timeScale;
                 mainPanel.SetActive(false);
                 vidPanel.SetActive(false);
@@ -800,7 +798,7 @@ namespace GreatArcStudios
             {
 
                 Debug.Log("A problem occured (chances are the terrain was not assigned )");
-                mainCam.farClipPlane = renderDistINI;
+                //mainCam.farClipPlane = renderDistINI;
                 mainCam.fieldOfView = fovINI;
                 mainPanel.SetActive(true);
                 vidPanel.SetActive(false);
@@ -932,9 +930,9 @@ namespace GreatArcStudios
             }
             catch
             {
-                Debug.Log(" Finding main camera now...it is still suggested that you manually assign this");
+                //Debug.Log(" Finding main camera now...it is still suggested that you manually assign this");
 				mainCam = Camera.main;
-                mainCam.farClipPlane = f;
+                //mainCam.farClipPlane = f;
 
             }
 
@@ -1000,7 +998,7 @@ namespace GreatArcStudios
         /// <param name="fov"></param>
         public void updateFOV(float fov)
         {
-            mainCam.fieldOfView = fov;
+            //mainCam.fieldOfView = fov;
         }
         /// <summary>
         /// Toggle on or off Depth of Field. This is meant to be used with a checkbox.
@@ -1025,7 +1023,7 @@ namespace GreatArcStudios
             }
             catch
             {
-                Debug.Log("No AO post processing found");
+               // Debug.Log("No AO post processing found");
                 return;
             }
 

@@ -7,7 +7,7 @@ public class laserMovimiento : MonoBehaviour {
 	#region Variables
 	[SerializeField]
 	private float velocidad;
-	private float tiempoDeVida = 7f;
+	private float tiempoDeVida = 1f;
 	#endregion
 
 	#region Metodos de Unity
