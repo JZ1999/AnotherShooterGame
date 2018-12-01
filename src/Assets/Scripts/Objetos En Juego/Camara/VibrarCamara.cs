@@ -22,7 +22,6 @@ public class VibrarCamara : MonoBehaviour {
 		if (efectoVisualGravitacional.activado && activado) { 
 			StartCoroutine(Vibrar(datos.duracion, datos.fuerza));
 			activado = false;
-			Debug.Log(1);
 		}
 
 		if (!efectoVisualGravitacional.activado)

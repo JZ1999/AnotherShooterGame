@@ -14,6 +14,8 @@ public class activarEfectoGravitacional : MonoBehaviour {
     }
     
     void Update () {
+		if (GameObject.FindGameObjectWithTag("Player") == null)
+			efectoVisualGravitacional.activado = false;
 		if (efectoVisualGravitacional.activado)
 		{
 			aplicarEfecto();
@@ -28,6 +30,7 @@ public class activarEfectoGravitacional : MonoBehaviour {
 
 	private void aplicarEfecto()
 	{
+
 		float alpha = efectoVisualGravitacional.indice;
 		Color color_deseado = new Color(img.color.r, img.color.g, img.color.b, alpha);
 		img.color = color_deseado;

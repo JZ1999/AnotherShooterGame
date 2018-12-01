@@ -31,9 +31,10 @@ public class efectoVisualGravitacional : MonoBehaviour {
 	{
 		fogColor = RenderSettings.fogColor;
 		fogDensity = RenderSettings.fogDensity;
+		revertirEfecto();
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		calcularIndice();
 	}
@@ -66,10 +67,15 @@ public class efectoVisualGravitacional : MonoBehaviour {
 	{
 		if (other.CompareTag("gravitacional"))
 		{
-			activado = false;
-			RenderSettings.fogDensity = fogDensity;
-			RenderSettings.fogColor = fogColor;
+			revertirEfecto();
 		}
+	}
+
+	private void revertirEfecto()
+	{
+		activado = false;
+		RenderSettings.fogDensity = fogDensity;
+		RenderSettings.fogColor = fogColor;
 	}
 	#endregion
 }

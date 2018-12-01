@@ -18,6 +18,7 @@ public class Misil : MonoBehaviour {
 	private GameObject explosion;
 	[SerializeField]
 	private AudioSource explosionSND;
+	private bool exploto = false;
 	#endregion
 
 	#region Metodos de Unity
@@ -29,6 +30,8 @@ public class Misil : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		if (!explosionSND.isPlaying && exploto)
+			Destroy(gameObject);
 		try
 		{
 			Vector3 posDeseada = objetivo.transform.position;
@@ -36,12 +39,14 @@ public class Misil : MonoBehaviour {
 			rb.AddForce(transform.forward * constanteVelocidad * velocidad);
 		}catch (Exception)
 		{
-			explotar();
+			if(!exploto)
+				explotar();
 		}
 
 		if (tiempoDeVida <= 0)
 		{
-			explotar();
+			if (!exploto)
+				explotar();
 		}
 		tiempoDeVida -= Time.deltaTime;
 
@@ -53,7 +58,8 @@ public class Misil : MonoBehaviour {
 		{
 			if (other.CompareTag(tag))
 			{
-				explotar();
+				if (!exploto)
+					explotar();
 			}
 		}
 	}
@@ -62,10 +68,10 @@ public class Misil : MonoBehaviour {
 
 	private void explotar()
 	{
+		exploto = true;
 		explosionSND.Play();
 		Instantiate(explosion, transform.position, Quaternion.identity);
 		gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
-		Destroy(gameObject);
 	}
 
 	private void calcEnemigoCercano()

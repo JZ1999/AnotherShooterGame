@@ -20,6 +20,7 @@ public class EfectoVisualNebulosa : MonoBehaviour {
 	{
 		fogColor = RenderSettings.fogColor;
 		fogDensity = RenderSettings.fogDensity;
+		revertirEfecto();
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -36,10 +37,15 @@ public class EfectoVisualNebulosa : MonoBehaviour {
 	{
 		if (other.CompareTag("nebulosa"))
 		{
-			RenderSettings.fogDensity = fogDensity;
-			RenderSettings.fogColor = fogColor;
-			activado = false;
+			revertirEfecto();
 		}
+	}
+
+	private void revertirEfecto()
+	{
+		RenderSettings.fogDensity = fogDensity;
+		RenderSettings.fogColor = fogColor;
+		activado = false;
 	}
 	#endregion
 }

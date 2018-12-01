@@ -11,9 +11,12 @@ public class recibirDannoObstaculos : MonoBehaviour {
 	private DatosDeJugador info;
 	[SerializeField]
 	private GameObject objDestruido;
+	[SerializeField]
+	private cofre[] cofres;
 
 	private int vida;
 	private int danno;
+	private bool cofreSpawneado = false;
 	private GameObject fracturasSpawneadas = null;//Para detectar si ya spawneo
 											//el objeto fracturado
     #endregion
@@ -30,14 +33,19 @@ public class recibirDannoObstaculos : MonoBehaviour {
 		muerte();
 	}
 
+
+	#endregion
+
 	private void muerte()
 	{
 		if (vida <= 0 && fracturasSpawneadas == null)
 		{
-			GameObject obj = Instantiate(objDestruido, transform.position, transform.rotation);
-			fracturasSpawneadas = obj;
-			obj.SetActive(true);
-
+			if (!cofreSpawneado)
+			{
+				GameObject obj = Instantiate(objDestruido, transform.position, transform.rotation);
+				fracturasSpawneadas = obj;
+				obj.SetActive(true);
+			}
 			Destroy(gameObject);
 		}
 	}
@@ -49,5 +57,20 @@ public class recibirDannoObstaculos : MonoBehaviour {
 			vida -= danno;
 		}
 	}
-	#endregion
+
+	private void spawnearCofre()
+	{
+
+		cofreSpawneado = true;
+		for (int i = 0; i < cofres.Length; i++)
+		{
+			int num = Random.Range(0, 100);
+			if (num <= cofres[i].posibilidad)
+			{
+				Instantiate(cofres[i].objeto, transform.position, Quaternion.Euler(new Vector3(-120, 0, 0)));
+				return;
+			}
+
+		}
+	}
 }

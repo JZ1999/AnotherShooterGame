@@ -15,7 +15,7 @@ public class DatosDeJugador : ScriptableObject {
 
 	[Header("Stats")]
 	public int nivel = 1;
-	[Range(2f, 6f)]
+	[Range(2f, 50f)]
 	public int vida;
 	public habilidades habilidad;
 	[Range(0.7f, 3f)]

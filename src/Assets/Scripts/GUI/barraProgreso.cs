@@ -35,8 +35,6 @@ public class barraProgreso : MonoBehaviour {
 	private void actualizarBarraYIcono()
 	{
 		float z = (final.z-Mathf.Abs(gameObject.GetComponent<Image>().transform.position.z));
-		Debug.Log(final.z);
-		Debug.Log(gameObject.GetComponent<Image>().transform.position.z);
 		gameObject.GetComponent<Image>().transform.position = new Vector3(posTR.x, z,posTR.z);
 		healthBar.UpdateBar(final.z - Vector3.Distance(posJugador, final), final.z);
 	}

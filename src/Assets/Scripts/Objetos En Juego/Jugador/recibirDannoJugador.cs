@@ -58,6 +58,7 @@ public class recibirDannoJugador : MonoBehaviour {
 		if (vida <= 0)
 		{
 			Destroy(gameObject);
+			Debug.Log("Dead");
         }
 	}
 
@@ -67,8 +68,6 @@ public class recibirDannoJugador : MonoBehaviour {
 		{
 			vida -= danno;
 			healthBar.UpdateBar(((float)vida / (float)info.vida) * 100, 100);
-			//healthBar.UpdateBar(50, 100);
-			Debug.Log(string.Concat("Vida: ", vida," Vida Original: ",info.vida, " Prop: ", ((float)vida / (float)info.vida)*100));
 		}
 	}
     #endregion
