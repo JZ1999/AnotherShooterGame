@@ -18,11 +18,15 @@ public class DatosDeJugador : ScriptableObject {
 	[Range(2f, 50f)]
 	public int vida;
 	public habilidades habilidad;
+	[Range(1f, 50f)]
+	public int dannoHabilidad;
+	[Range(5f, 60f)]
+	[Tooltip("Cooldown de la habilidad")]
+	public float cooldownHabilidad;
 	[Range(0.7f, 3f)]
 	[Tooltip("Cooldown al disparar")]
 	public float cooldown;
-	public const float cooldownHabilidad = 10f;
-	[Range(1f, 6f)]
+	[Range(1f, 30f)]
 	public int danno;
 
 	[Space]

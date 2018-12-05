@@ -29,28 +29,15 @@ public class Misil : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 	}
 
-	void FixedUpdate () {
-		if (!explosionSND.isPlaying && exploto)
-			Destroy(gameObject);
-		try
-		{
-			Vector3 posDeseada = objetivo.transform.position;
-			transform.LookAt(posDeseada);
-			rb.AddForce(transform.forward * constanteVelocidad * velocidad);
-		}catch (Exception)
-		{
-			if(!exploto)
-				explotar();
-		}
-
-		if (tiempoDeVida <= 0)
-		{
-			if (!exploto)
-				explotar();
-		}
+	void FixedUpdate ()
+	{
+		destruirObjeto();
+		accionesDeMisil();
+		tiempoAcabado();
 		tiempoDeVida -= Time.deltaTime;
 
 	}
+
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -65,6 +52,44 @@ public class Misil : MonoBehaviour {
 	}
 
 	#endregion
+
+	private void accionesDeMisil()
+	{
+		try
+		{
+			movimiento();
+		}
+		catch (Exception)
+		{
+			if (!exploto)
+				explotar();
+		}
+	}
+
+	private void tiempoAcabado()
+	{
+		if (tiempoDeVida <= 0)
+		{
+			if (!exploto)
+				explotar();
+		}
+	}
+
+	private void movimiento()
+	{
+		if (!exploto)
+		{
+			Vector3 posDeseada = objetivo.transform.position;
+			transform.LookAt(posDeseada);
+			rb.AddForce(transform.forward * constanteVelocidad * velocidad);
+		}
+	}
+
+	private void destruirObjeto()
+	{
+		if (!explosionSND.isPlaying && exploto)
+			Destroy(gameObject);
+	}
 
 	private void explotar()
 	{

@@ -17,7 +17,6 @@ public class recibirDanno : MonoBehaviour {
 	#region Variables
 	[SerializeField]
 	private Enemigo informacionEnemigo;
-	[SerializeField]
 	private DatosDeJugador info;
 	[SerializeField]
 	private SimpleHealthBar barraDeVida;
@@ -25,16 +24,22 @@ public class recibirDanno : MonoBehaviour {
 	private GameObject objDestruido;
 	[SerializeField]
 	private cofre[] cofres;
+	[SerializeField]
+	private string tagJugador;
 
 	private int vida;
 	private int danno;
+	private int dannoHabilidad;
 	private bool cofreSpawneado = false;
 	#endregion
 
 	#region Metodos de Unity
 	void Start () {
+		info = GameObject.FindGameObjectWithTag(tagJugador).GetComponent<guardarDatosJugador>().getInfo();
 		danno = info.danno;
+		dannoHabilidad = info.dannoHabilidad;
 		vida = informacionEnemigo.escudos;
+		
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -77,10 +82,14 @@ public class recibirDanno : MonoBehaviour {
 
 	private void perderVida(Collider other)
 	{
-		if (other.CompareTag("laser") || other.CompareTag("misil"))
+		if (other.CompareTag("laser"))
 		{
 			vida -= danno;
-			barraDeVida.UpdateBar(vida, informacionEnemigo.escudos);
+
+		}else if (other.CompareTag("misil"))
+		{
+			vida -= dannoHabilidad;
 		}
+		barraDeVida.UpdateBar(vida, informacionEnemigo.escudos);
 	}
 }

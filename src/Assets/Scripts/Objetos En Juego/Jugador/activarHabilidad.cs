@@ -8,30 +8,46 @@ public class activarHabilidad : MonoBehaviour {
 	private KeyCode tecla;
 	[SerializeField]
 	private GameObject misil;
-	[SerializeField]
-	private float cooldown = 2f;
+	private float cooldown;
+	private float cooldown_aux;
 	[SerializeField]
 	private AudioSource en_cooldownSND;
-    #endregion
+	[SerializeField]
+	private SimpleHealthBar energía;
+	[SerializeField]
+	private DatosDeJugador info;
+	#endregion
 
-    #region Metodos de Unity
-    void Start () {
-        
-    }
-    
-    void Update () {
+	#region Metodos de Unity
+
+	private void Start()
+	{
+		cooldown = info.cooldownHabilidad;
+		cooldown_aux = cooldown;
+	}
+
+	void Update () {
 		if (Input.GetKeyDown(tecla))
 		{
-			if (cooldown <= 0)
-			{
-				Quaternion rotacionDeseada = Quaternion.Euler(new Vector3(0, 0, 0));
-				Instantiate(misil, transform.position, rotacionDeseada);
-				cooldown = 2f;
-			}
-			else
-				en_cooldownSND.Play();
+			usarHabilidad();
 		}
+		if (cooldown >= 0)
+			energía.UpdateBar(100 - (cooldown / cooldown_aux) * 100, 100);
 		cooldown -= Time.deltaTime;
 	}
-    #endregion
+
+
+	#endregion
+
+	private void usarHabilidad()
+	{
+		if (cooldown <= 0)
+		{
+			Quaternion rotacionDeseada = Quaternion.Euler(new Vector3(0, 0, 0));
+			Instantiate(misil, transform.position, rotacionDeseada);
+			cooldown = cooldown_aux;
+		}
+		else
+			en_cooldownSND.Play();
+	}
 }
