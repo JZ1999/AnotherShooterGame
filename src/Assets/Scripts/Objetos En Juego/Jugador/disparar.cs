@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 [DisallowMultipleComponent]
 public class disparar : MonoBehaviour {
@@ -23,6 +23,7 @@ public class disparar : MonoBehaviour {
 	private void Start()
 	{
 		cooldown_cp = cooldown;
+		
 	}
 
 	void Update () {
@@ -44,7 +45,7 @@ public class disparar : MonoBehaviour {
 		bool termino = cooldown <= 0;
 		return termino;
 	}
-
+ 
 	private void crearLaserYsuTransform()
 	{
 		Quaternion rotacionDeseada = Quaternion.Euler(new Vector3(90, 0, 0));

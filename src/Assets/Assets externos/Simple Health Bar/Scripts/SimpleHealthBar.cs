@@ -154,11 +154,11 @@ public class SimpleHealthBar : MonoBehaviour
 	public void UpdateColor ( Gradient targetGradient )
 	{
 		// If the color is not set to gradient, then return.
-		if( colorMode != ColorMode.Gradient || barImage == null )
-			return;
+		///if( colorMode != ColorMode.Gradient || barImage == null )
+			//return;
 
-		barGradient = targetGradient;
-		UpdateGradient();
+		//barGradient = targetGradient;
+		//UpdateGradient();
 	}
 
 	/// <summary>

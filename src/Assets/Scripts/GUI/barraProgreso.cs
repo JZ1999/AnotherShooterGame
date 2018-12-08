@@ -3,40 +3,39 @@ using UnityEngine.UI;
 
 [DisallowMultipleComponent]
 public class barraProgreso : MonoBehaviour {
-	//TODO: Este script no sirve
+    
 
 
-	#region Variables
-	[SerializeField]
-	private Vector3 final;
+
+
+    #region Variables
+    [SerializeField]
+	private float ZFinal;
 	private Vector3 posJugador;
 	[SerializeField]
 	private SimpleHealthBar healthBar;
 	private Vector3 posTR;
-	#endregion
+    public const int offset = 770;
+    private const float razonBarraIcono = 9.37f;
+    private int[] XZ_delIcono = { 65, 0 };
+    #endregion
 
-	#region Metodos de Unity
-	void Start () {
-		posTR = transform.position;
-		posJugador = GameObject.FindGameObjectWithTag("Player").transform.position;
+    #region Metodos de Unity
+    void Start () {
+		posTR = transform.localPosition;
     }
     
     void Update () {
-		try
-		{
-			actualizarBarraYIcono();
-		}
-		catch(System.Exception e)
-		{
-			Debug.Log(e);
-		}
+        actualizarBarraYIcono();
     }
 
 	private void actualizarBarraYIcono()
 	{
-		float z = (final.z-Mathf.Abs(gameObject.GetComponent<Image>().transform.position.z));
-		gameObject.GetComponent<Image>().transform.position = new Vector3(posTR.x, z,posTR.z);
-		healthBar.UpdateBar(final.z - Vector3.Distance(posJugador, final), final.z);
-	}
+        posJugador = GameObject.FindGameObjectWithTag("Player").transform.position;
+        float posicion = posTR.y;
+        float aumento = Mathf.Min(razonBarraIcono, ((posJugador.z + offset) / ZFinal * razonBarraIcono));    
+        transform.localPosition = new Vector3(XZ_delIcono[0], posicion + aumento , XZ_delIcono[1]);
+        healthBar.UpdateBar(posJugador.z + offset, ZFinal);
+    }
 	#endregion
 }

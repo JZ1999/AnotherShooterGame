@@ -61,30 +61,35 @@ public class Movimiento : MonoBehaviour {
 	#endregion
 
 	private void sonarMotor()
-	{
-		bool presionadoTecla = conseguirPresionadoTecla();
-		if (presionadoTecla && !gameover.juegoEnPausa)
-		{
-			if (!tocandoSonido)
-			{
-				//motorSND.Play();
-				tocandoSonido = true;
-				motorSND.mute = false;
-			}
-			else
-			{
-				//motorSND.UnPause();
-				motorSND.mute = false;
-			}
-		}
-		else
-		{
-			//motorSND.Pause();
-			motorSND.mute = true;
-		}
-	}
+    {
+        bool presionadoTecla = conseguirPresionadoTecla();
+        if (puedeSonar(presionadoTecla))
+        {
+            if (!tocandoSonido)
+            {
+                //motorSND.Play();
+                tocandoSonido = true;
+                motorSND.mute = false;
+            }
+            else
+            {
+                //motorSND.UnPause();
+                motorSND.mute = false;
+            }
+        }
+        else
+        {
+            //motorSND.Pause();
+            motorSND.mute = true;
+        }
+    }
 
-	private static bool conseguirPresionadoTecla()
+    private static bool puedeSonar(bool presionadoTecla)
+    {
+        return presionadoTecla && !gameover.juegoEnPausa;
+    }
+
+    private static bool conseguirPresionadoTecla()
 	{
 		return Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
 	}
