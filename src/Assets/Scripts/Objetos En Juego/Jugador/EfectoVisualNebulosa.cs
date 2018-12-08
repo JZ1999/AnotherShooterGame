@@ -11,7 +11,10 @@ public class EfectoVisualNebulosa : MonoBehaviour {
 	private float fogDensity_Deseado;
 	[SerializeField]
 	private Color fogColor_Deseado;
-
+	[SerializeField]
+	private GameObject camara1OBJ;
+	[SerializeField]
+	private GameObject camara2OBJ;
 	public static bool activado;
 	#endregion
 
@@ -22,6 +25,16 @@ public class EfectoVisualNebulosa : MonoBehaviour {
 		fogDensity = RenderSettings.fogDensity;
 		revertirEfecto();
 	}
+
+
+	private void Update()
+	{
+		/*if (camara1OBJ.GetComponent<Camera>().isActiveAndEnabled)
+		{
+			revertirEfecto();
+		}*/
+	}
+
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -41,11 +54,13 @@ public class EfectoVisualNebulosa : MonoBehaviour {
 		}
 	}
 
+
+	#endregion
+
 	private void revertirEfecto()
 	{
 		RenderSettings.fogDensity = fogDensity;
 		RenderSettings.fogColor = fogColor;
 		activado = false;
 	}
-	#endregion
 }

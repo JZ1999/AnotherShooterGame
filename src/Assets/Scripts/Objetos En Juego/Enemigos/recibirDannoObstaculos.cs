@@ -7,15 +7,17 @@ public class recibirDannoObstaculos : MonoBehaviour {
 	#region Variables
 	[SerializeField]
 	private Obstaculo informacionObstaculo;
-	[SerializeField]
 	private DatosDeJugador info;
 	[SerializeField]
 	private GameObject objDestruido;
 	[SerializeField]
 	private cofre[] cofres;
+	[SerializeField]
+	private string tagJugador;
 
 	private int vida;
 	private int danno;
+	private int dannoHabilidad;
 	private bool cofreSpawneado = false;
 	private GameObject fracturasSpawneadas = null;//Para detectar si ya spawneo
 											//el objeto fracturado
@@ -23,8 +25,11 @@ public class recibirDannoObstaculos : MonoBehaviour {
 
     #region Metodos de Unity
     void Start () {
+		info = GameObject.FindGameObjectWithTag(tagJugador).GetComponent<guardarDatosJugador>().getInfo();
 		danno = info.danno;
+		dannoHabilidad = info.dannoHabilidad;
 		vida = informacionObstaculo.escudos;
+		
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -52,9 +57,12 @@ public class recibirDannoObstaculos : MonoBehaviour {
 
 	private void perderVida(Collider other)
 	{
-		if (other.CompareTag("laser") || other.CompareTag("misil"))
+		if (other.CompareTag("laser"))
 		{
 			vida -= danno;
+		}else if (other.CompareTag("misil"))
+		{
+			vida -= dannoHabilidad;
 		}
 	}
 
